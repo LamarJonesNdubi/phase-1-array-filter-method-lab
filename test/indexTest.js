@@ -1,5 +1,44 @@
 require ( './helpers.js' );
 
+const drivers = [
+  { name: "Bobby", hometown: "New York" },
+  { name: "Sammy", hometown: "San Francisco" },
+  { name: "Sally", hometown: "Cleveland" },
+  { name: "Annette", hometown: "Los Angeles" },
+  { name: "Sarah", hometown: "Denver" }
+];
+
+function findMatching(driverNames, query) {
+  return driverNames.filter(driverName => 
+    driverName.toLowerCase() === query.toLowerCase()
+  );
+}
+
+function fuzzyMatch(driverNames, query) {
+  return driverNames.filter(driverName =>
+    driverName.toLowerCase().startsWith(query.toLowerCase())
+  );
+}
+
+function matchName(driverObjects, query) {
+  return driverObjects.filter(driver =>
+    driver.name.toLowerCase() === query.toLowerCase()
+  );
+}
+
+const driverNames = ["Bobby", "Sammy", "Sally", "Annette", "Sarah"];
+
+console.log(findMatching(driverNames, "Bobby")); 
+console.log(findMatching(driverNames, "Sammy")); 
+console.log(findMatching(driverNames, "bobby")); 
+
+console.log(fuzzyMatch(driverNames, "Sa")); 
+console.log(fuzzyMatch(driverNames, "An"));
+
+console.log(matchName(drivers, "Bobby"));
+console.log(matchName(drivers, "Sammy")); 
+
+
 const sinon = require( 'sinon' )
 
 describe('index.js', function () {
